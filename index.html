@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0c0f14" />
+    <meta name="description" content="在浏览器中玩的俄罗斯方块。支持键盘和触控，最高分保存在本地。" />
+    <title>俄罗斯方块</title>
+  </head>
+  <body>
+    <noscript><p class="noscript">请启用 JavaScript 来玩俄罗斯方块。</p></noscript>
+    <div class="app">
+      <header class="top">
+        <div class="brand">
+          <span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <div>
+            <h1>俄罗斯方块</h1>
+            <p>七种方块，越玩越快</p>
+          </div>
+        </div>
+        <button type="button" class="ghost-btn" id="restart">重新开始</button>
+      </header>
+
+      <main class="layout">
+        <section class="card hold-card">
+          <h2>暂存</h2>
+          <div class="mini">
+            <canvas id="hold" width="160" height="160"></canvas>
+            <span class="empty" id="hold-empty">空</span>
+          </div>
+          <p class="hint" id="hold-hint">C 暂存</p>
+        </section>
+
+        <section class="stage">
+          <div class="well">
+            <canvas id="board" width="300" height="600"></canvas>
+            <div id="flash" class="flash" hidden></div>
+            <div id="overlay" class="overlay is-open">
+              <div>
+                <h2 id="overlay-title">俄罗斯方块</h2>
+                <p id="overlay-text">把方块排成完整的一行。</p>
+                <button type="button" class="primary" id="overlay-action">开始游戏</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card next-card">
+          <h2>下一个</h2>
+          <div class="mini">
+            <canvas id="next" width="160" height="160"></canvas>
+            <span class="empty" id="next-empty">空</span>
+          </div>
+        </section>
+
+        <section class="card stats-card" aria-label="成绩">
+          <div class="stat">
+            <span>分数</span>
+            <strong id="score">0</strong>
+          </div>
+          <div class="stat">
+            <span>等级</span>
+            <strong id="level">1</strong>
+          </div>
+          <div class="stat">
+            <span>行数</span>
+            <strong id="lines">0</strong>
+          </div>
+          <div class="stat stat-best">
+            <span>最高分</span>
+            <strong id="best">0</strong>
+            <em class="record-tag" id="record-tag" hidden>新纪录</em>
+          </div>
+        </section>
+
+        <section class="card help-card">
+          <h2>操作</h2>
+          <ul>
+            <li><span><kbd>←</kbd><kbd>→</kbd></span>移动</li>
+            <li><span><kbd>↑</kbd></span>旋转</li>
+            <li><span><kbd>↓</kbd></span>软降</li>
+            <li><span><kbd>空格</kbd></span>硬降</li>
+            <li><span><kbd>C</kbd></span>暂存</li>
+            <li><span><kbd>P</kbd></span>暂停</li>
+          </ul>
+        </section>
+
+        <section class="touch" aria-label="触控操作">
+          <button type="button" data-repeat="left" aria-label="左移">左</button>
+          <button type="button" data-repeat="right" aria-label="右移">右</button>
+          <button type="button" data-once="rotate" aria-label="旋转">旋转</button>
+          <button type="button" data-repeat="soft" aria-label="软降">软降</button>
+          <button type="button" data-once="hard" class="accent" aria-label="硬降">硬降</button>
+          <button type="button" data-once="hold" aria-label="暂存">暂存</button>
+          <button type="button" data-once="pause" id="pause-btn" aria-label="暂停">暂停</button>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
